@@ -3,6 +3,5 @@ export default function iterateThroughObject(reportWithIterator) {
   for (const item of reportWithIterator) {
     result += item + ' | ';
   }
-  // Remove the trailing ' | ' from the string
   return result.slice(0, -3);
 }
