@@ -1,13 +1,8 @@
 export default function iterateThroughObject(reportWithIterator) {
-  let employees = '';
-
-  for (const [i, value] of reportWithIterator.entries()) {
-    if (i !== reportWithIterator.length - 1) {
-      employees += `${value} | `;
-    } else {
-      employees += value;
-    }
+  let result = '';
+  for (const item of reportWithIterator) {
+    result += item + ' | ';
   }
-
-  return employees;
+  // Remove the trailing ' | ' from the string
+  return result.slice(0, -3);
 }
