@@ -1,12 +1,26 @@
 export default function createIteratorObject(report) {
-  const workers = [];
-  /* eslint-disable no-unused-vars */
-  for (const [department, employees] of Object.entries(report.allEmployees)) {
-    for (const employe of employees) {
-      workers.push(employe);
-    }
-  }
-  /* eslint-enable no-unused-vars */
+  const employees = Object.values(report.allEmployees);
+  let currentDepartmentIndex = 0;
+  let currentEmployeeIndex = 0;
 
-  return workers;
+  return {
+    next() {
+      if (currentEmployeeIndex < employees[currentDepartmentIndex].length) {
+        const result = {
+          value: employees[currentDepartmentIndex][currentEmployeeIndex],
+          done: false
+        };
+        currentEmployeeIndex++;
+        return result;
+      }
+
+      if (currentDepartmentIndex < employees.length - 1) {
+        currentDepartmentIndex++;
+        currentEmployeeIndex = 0;
+        return this.next();
+      }
+
+      return { done: true };
+    }
+  };
 }
