@@ -2,7 +2,7 @@
 
 import { uploadPhoto, createUser } from './utils.js';
 
-async function handleProfileSignup () {
+async function handleProfileSignup() {
   try {
     const photoResponse = await uploadPhoto('profile-photo.jpg');
     const userResponse = await createUser('Guillaume', 'Salva');
