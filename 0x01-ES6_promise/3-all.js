@@ -2,7 +2,7 @@
 
 import { uploadPhoto, createUser } from './utils';
 
-async function handleProfileSignup() {
+async function handleProfileSignup () {
   return Promise
     .all([uploadPhoto(), createUser()])
     .then((values) => {
