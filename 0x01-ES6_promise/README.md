@@ -1,5 +1,8 @@
 # JavaScript Promises and Async/Await Tasks
 
+![](pic.jpeg)
+
+
 This repository contains a collection of JavaScript tasks focused on promises, async/await, and error handling. Each task is designed to demonstrate proficiency in handling asynchronous operations in JavaScript.
 
 ## Table of Contents
