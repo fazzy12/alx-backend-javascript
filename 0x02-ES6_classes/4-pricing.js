@@ -1,7 +1,7 @@
 import Currency from './3-currency.js';
 
 export default class Pricing {
-  constructor(amount, currency) {
+  constructor( amount, currency ) {
     this._amount = amount;
     this._currency = currency;
   }
@@ -10,7 +10,7 @@ export default class Pricing {
     return this._amount;
   }
 
-  set amount(newAmount) {
+  set amount( newAmount ) {
     if (typeof newAmount === 'number') {
       this._amount = newAmount;
     } else {
@@ -22,7 +22,7 @@ export default class Pricing {
     return this._currency;
   }
 
-  set currency(newCurrency) {
+  set currency( newCurrency ) {
     if (newCurrency instanceof Currency) {
       this._currency = newCurrency;
     } else {
@@ -34,7 +34,7 @@ export default class Pricing {
     return `${this._amount} ${this._currency.name} (${this._currency.code})`;
   }
 
-  static convertPrice(amount, conversionRate) {
+  static convertPrice( amount, conversionRate ) {
     if (typeof amount === 'number' && typeof conversionRate === 'number') {
       return amount * conversionRate;
     } else {
