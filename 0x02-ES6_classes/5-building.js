@@ -1,5 +1,5 @@
 export default class Building {
-  constructor (sqft) {
+  constructor(sqft) {
     this._sqft = sqft;
 
     if (this.constructor !== Building) {
@@ -10,7 +10,7 @@ export default class Building {
     }
   }
 
-  get sqft () {
+  get sqft() {
     return this._sqft;
   }
 }
