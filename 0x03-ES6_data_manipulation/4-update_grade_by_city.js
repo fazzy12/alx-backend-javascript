@@ -6,7 +6,7 @@ export default function updateStudentGradeByCity(students, city, newGrades) {
       id: student.id,
       firstName: student.firstName,
       location: student.location,
-      grade,
+      grade
     };
   }).filter(student => student.location === city);
 }
