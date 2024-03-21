@@ -1,586 +1,96 @@
-0x03. ES6 data manipulation
-===========================
+# JavaScript Data Manipulation
 
-This repo is included in Specializations - Web Stack programming ― Back-end Course of Holberton School. We will cover the `E6 data manipulation.`
+![](pic.jpg)
 
-![Logo](https://www.howtogeek.com/wp-content/uploads/2021/05/laptop-with-terminal-big.png?height=200p&trim=2,2,2,50)
+This repository contains a collection of JavaScript functions for data manipulation using modern ES6 features. Below, you'll find a detailed guide on how to use each function along with instructions on setting up and running the project.
 
-Learning Objectives
--------------------
+## Installation
 
-At the end of this project, you are expected to be able to [explain to anyone](https://intranet.hbtn.io/rltoken/6hAHgcAIEhMBtFjVuqNrEA "explain to anyone"), **without the help of Google**:
+To use these functions, follow these steps:
 
-*   How to use map, filter and reduce on arrays
-*   Typed arrays
-*   The Set, Map, and Weak link data structures
+1. Clone the repository to your local machine:
 
-Resources
----------
-
-**Read or watch**:
-
-*   [Array](https://intranet.hbtn.io/rltoken/wwXCT3fq4IXd1I9uNI77ZA "Array")
-*   [Typed Array](https://intranet.hbtn.io/rltoken/vh-3p3KW641JOjcM13AQuQ "Typed Array")
-*   [Set Data Structure](https://intranet.hbtn.io/rltoken/bTIxlT2dX7Ug7KMqQlbJ9w "Set Data Structure")
-*   [Map Data Structure](https://intranet.hbtn.io/rltoken/qpMmznNSHZRf_oIWXa882Q "Map Data Structure")
-*   [WeakMap](https://intranet.hbtn.io/rltoken/spKDkmTeDUOY5JGy96XL0g "WeakMap")
-
-Setup
------
-
-### Install NodeJS 12.11.x
-
-(in your home directory):
-
-    curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
-    sudo bash nodesource_setup.sh
-    sudo apt install nodejs -y
-    
-
-    $ nodejs -v
-    v12.11.1
-    $ npm -v
-    6.11.3
+git clone https://github.com/your-username/alx-backend-javascript.git
 
 
-### Install Jest, Babel, and ESLint
+2. Navigate to the project directory:
 
-in your project directory:
-
-*   Install Jest using: `npm install --save-dev jest`
-*   Install Babel using: `npm install --save-dev babel-jest @babel/core @babel/preset-env`
-*   Install ESLint using: `npm install --save-dev eslint`
-
-Configuration files
--------------------
-
-### `package.json`
-
-```
-{
-  "scripts": {
-    "lint": "./node_modules/.bin/eslint",
-    "check-lint": "lint [0-9]*.js",
-    "dev": "npx babel-node",
-    "test": "jest",
-    "full-test": "./node_modules/.bin/eslint [0-9]*.js && jest"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/node": "^7.8.0",
-    "@babel/preset-env": "^7.6.0",
-    "eslint": "^6.4.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.17.0",
-    "jest": "^24.9.0"
-  }
-}
+```cd alx-backend-javascript
 ```
 
-### `babel.config.js`
+
+3. Install the project dependencies:
 
 ```
-module.exports = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          node: 'current',
-        },
-      },
-    ],
-  ],
-};
+npm install
 ```
-### `.eslintrc.js`
+
+
+## Functions Overview
+
+This repository contains the following functions for data manipulation:
+
+1. **getListStudents**: Returns an array of student objects with attributes `id`, `firstName`, and `location`.
+2. **getListStudentIds**: Returns an array of student IDs extracted from a list of student objects.
+3. **getStudentsByLocation**: Filters and returns an array of student objects based on the specified city.
+4. **getStudentIdsSum**: Returns the sum of all student IDs from a list of student objects.
+5. **updateStudentGradeByCity**: Updates the grades of students in a specific city based on the provided grades array.
+6. **createInt8TypedArray**: Creates a new Int8 typed array with a value at a specific position.
+7. **setFromArray**: Creates a Set from an array.
+8. **hasValuesFromArray**: Checks if all elements in an array exist within a Set.
+9. **cleanSet**: Returns a string of Set values starting with a specific string.
+10. **updateUniqueItems**: Updates the quantity of unique items in a Map.
+11. **queryAPI** (Advanced): Tracks the number of times an API endpoint is queried and throws an error if the load is high.
+
+## Usage
+
+Each function is provided in a separate file within the `0x03-ES6_data_manipulation` directory. To use a specific function, follow these steps:
+
+1. Import the desired function into your JavaScript file:
 
 ```
-module.exports = {
-  env: {
-    browser: false,
-    es6: true,
-    jest: true,
-  },
-  extends: [
-    'airbnb-base',
-    'plugin:jest/all',
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
-  plugins: ['jest'],
-  rules: {
-    'max-classes-per-file': 'off',
-    'no-underscore-dangle': 'off',
-    'no-console': 'off',
-    'no-shadow': 'off',
-    'no-restricted-syntax': [
-      'error',
-      'LabeledStatement',
-      'WithStatement',
-    ],
-  },
-  overrides:[
-    {
-      files: ['*.js'],
-      excludedFiles: 'babel.config.js',
-    }
-  ]
-};
+import functionName from "./path-to-function-file.js";
 ```
-### and…
 
-Don’t forget to run `$ npm install` when you have the `package.json`
+2. Call the imported function with the required arguments.
 
-Tasks
------
+## Examples
 
-### 0\. Basic list of objects
+Here are some examples of how to use the functions:
 
-Create a function named `getListStudents` that returns an array of objects.
+```
+import getListStudents from "./0-get_list_students.js";
 
-Each object should have three attributes: `id` (Number), `firstName` (String), and `location` (String).
+const students = getListStudents();
+console.log(students);
 
-The array contains the following students in order:
 
-*   `Guillaume`, id: `1`, in `San Francisco`
-*   `James`, id: `2`, in `Columbia`
-*   `Serena`, id: `5`, in `San Francisco`
 
-    bob@dylan:~$ cat 0-main.js
-    import getListStudents from "./0-get_list_students.js";
-    
-    console.log(getListStudents());
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 0-main.js 
-    [
-      { id: 1, firstName: 'Guillaume', location: 'San Francisco' },
-      { id: 2, firstName: 'James', location: 'Columbia' },
-      { id: 5, firstName: 'Serena', location: 'San Francisco' }
-    ]
-    bob@dylan:~$ 
-    
+import updateStudentGradeByCity from "./4-update_grade_by_city.js";
+import getListStudents from "./0-get_list_students.js";
 
-**Repo:**
+const students = getListStudents();
+const updatedGrades = updateStudentGradeByCity(students, "San Francisco", [{ studentId: 5, grade: 97 }]);
+console.log(updatedGrades);
 
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [0-get_list_students.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/0-get_list_students.js)
+```
 
-### 1\. More mapping
+## Running Tests
+To run the tests for the functions, execute the following command:
 
-Create a function `getListStudentIds` that returns an array of ids from a list of object.
+```
+npm test
+```
 
-This function is taking one argument which is an array of objects - and this array is the same format as `getListStudents` from the previous task.
+## Contributions
+Contributions to this repository are welcome. If you'd like to contribute:
 
-If the argument is not an array, the function is returning an empty array.
+1. Fork the repository.
+2. Create a new branch for your feature or fix: git checkout -b feature-name.
+3. Make your changes and commit them: git commit -m 'Description of changes'.
+4. Push your changes to your fork: git push origin feature-name.
+5. Create a pull request against the main repository.
 
-You must use the `map` function on the array.
 
-    bob@dylan:~$ cat 1-main.js
-    import getListStudentIds from "./1-get_list_student_ids.js";
-    import getListStudents from "./0-get_list_students.js";
-    
-    console.log(getListStudentIds("hello"));
-    console.log(getListStudentIds(getListStudents()));
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 1-main.js 
-    []
-    [ 1, 2, 5 ]
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [1-get_list_student_ids.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/1-get_list_student_ids.js)
-
-### 2\. Filter
-
-Create a function `getStudentsByLocation` that returns an array of objects who are located in a specific city.
-
-It should accept a list of students (from `getListStudents`) and a `city` (string) as parameters.
-
-You must use the `filter` function on the array.
-
-    bob@dylan:~$ cat 2-main.js
-    import getListStudents from "./0-get_list_students.js";
-    import getStudentsByLocation from "./2-get_students_by_loc.js";
-    
-    const students = getListStudents();
-    
-    console.log(getStudentsByLocation(students, 'San Francisco'));
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 2-main.js 
-    [
-      { id: 1, firstName: 'Guillaume', location: 'San Francisco' },
-      { id: 5, firstName: 'Serena', location: 'San Francisco' }
-    ]
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [2-get_students_by_loc.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/2-get_students_by_loc.js)
-
-### 3\. Reduce
-
-Create a function `getStudentIdsSum` that returns the sum of all the student ids.
-
-It should accept a list of students (from `getListStudents`) as a parameter.
-
-You must use the `reduce` function on the array.
-
-    bob@dylan:~$ cat 3-main.js
-    import getListStudents from "./0-get_list_students.js";
-    import getStudentIdsSum from "./3-get_ids_sum.js";
-    
-    const students = getListStudents();
-    const value = getStudentIdsSum(students);
-    
-    console.log(value);
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 3-main.js 
-    8
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [3-get_ids_sum.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/3-get_ids_sum.js)
-
-### 4\. Combine
-
-Create a function `updateStudentGradeByCity` that returns an array of students for a specific city with their new grade
-
-It should accept a list of students (from `getListStudents`), a `city` (String), and `newGrades` (Array of “grade” objects) as parameters.
-
-`newGrades` is an array of objects with this format:
-
-      {
-        studentId: 31,
-        grade: 78,
-      }
-    
-
-If a student doesn’t have grade in `newGrades`, the final grade should be `N/A`.
-
-You must use `filter` and `map` combined.
-
-    bob@dylan:~$ cat 4-main.js
-    import getListStudents from "./0-get_list_students.js";
-    import updateStudentGradeByCity from "./4-update_grade_by_city.js";
-    
-    console.log(updateStudentGradeByCity(getListStudents(), "San Francisco", [{ studentId: 5, grade: 97 }, { studentId: 1, grade: 86 }]));
-    
-    console.log(updateStudentGradeByCity(getListStudents(), "San Francisco", [{ studentId: 5, grade: 97 }]));
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 4-main.js 
-    [
-      {
-        id: 1,
-        firstName: 'Guillaume',
-        location: 'San Francisco',
-        grade: 86
-      },
-      { id: 5, firstName: 'Serena', location: 'San Francisco', grade: 97 }
-    ]
-    [
-      {
-        id: 1,
-        firstName: 'Guillaume',
-        location: 'San Francisco',
-        grade: 'N/A'
-      },
-      { id: 5, firstName: 'Serena', location: 'San Francisco', grade: 97 }
-    ]
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [4-update_grade_by_city.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/4-update_grade_by_city.js)
-
-### 5\. Typed Arrays
-
-Create a function named `createInt8TypedArray` that returns a new `ArrayBuffer` with an `Int8` value at a specific position.
-
-It should accept three arguments: `length` (Number), `position` (Number), and `value` (Number).
-
-If adding the value is not possible the error `Position outside range` should be thrown.
-
-    bob@dylan:~$ cat 5-main.js
-    import createInt8TypedArray from "./5-typed_arrays.js";
-    
-    console.log(createInt8TypedArray(10, 2, 89));
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 5-main.js 
-    DataView {
-      byteLength: 10,
-      byteOffset: 0,
-      buffer: ArrayBuffer {
-        [Uint8Contents]: <00 00 59 00 00 00 00 00 00 00>,
-        byteLength: 10
-      }
-    }
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [5-typed_arrays.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/5-typed_arrays.js)
-
-### 6\. Set data structure
-
-Create a function named `setFromArray` that returns a `Set` from an array.
-
-It accepts an argument (Array, of any kind of element).
-
-    bob@dylan:~$ cat 6-main.js
-    import setFromArray from "./6-set.js";
-    
-    console.log(setFromArray([12, 32, 15, 78, 98, 15]));
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 6-main.js 
-    Set { 12, 32, 15, 78, 98 }
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [6-set.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/6-set.js)
-
-### 7\. More set data structure
-
-Create a function named `hasValuesFromArray` that returns a boolean if all the elements in the array exist within the set.
-
-It accepts two arguments: a `set` (Set) and an `array` (Array).
-
-    bob@dylan:~$ cat 7-main.js
-    import hasValuesFromArray from "./7-has_array_values.js";
-    
-    console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [1]));
-    console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [10]));
-    console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [1, 10]));
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 7-main.js 
-    true
-    false
-    false
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File:[7-has_array_values.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/7-has_array_values.js)
-
-### 8\. Clean set
-
-Create a function named `cleanSet` that returns a string of all the set values that start with a specific string (`startString`).
-
-It accepts two arguments: a `set` (Set) and a `startString` (String).
-
-When a value starts with `startString` you only append the rest of the string. The string contains all the values of the set separated by `-`.
-
-**Note**:
-
-*   If `startString` is of type undefined, the function will return an empty string.
-*   If `set` contains undefined elements, the function will skip these elements.
-
-    bob@dylan:~$ cat 8-main.js
-    import cleanSet from "./8-clean_set.js";
-    
-    console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), 'bon'));
-    console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), ''));
-    console.log(cleanSet(new Set(['bonjovi', 'bonaparte', , 'banana'])));
-    console.log(cleanSet(new Set(['bonjovi', 'bonaparte', , 'banana']), 'bon'));
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 8-main.js 
-    jovi-aparte-appetit
-    
-    
-    jovi-aparte
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [8-clean_set.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/8-clean_set.js)
-
-### 9\. Map data structure
-
-Create a function named `groceriesList` that returns a map of groceries with the following items (name, quantity):
-
-    Apples, 10
-    Tomatoes, 10
-    Pasta, 1
-    Rice, 1
-    Banana, 5
-    
-
-Result:
-
-    bob@dylan:~$ cat 9-main.js
-    import groceriesList from "./9-groceries_list.js";
-    
-    console.log(groceriesList());
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 9-main.js 
-    Map {
-      'Apples' => 10,
-      'Tomatoes' => 10,
-      'Pasta' => 1,
-      'Rice' => 1,
-      'Banana' => 5
-    }
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [9-groceries_list.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/9-groceries_list.js)
-
-### 10\. More map data structure
-
-Create a function named `updateUniqueItems` that returns an updated map for all items with initial quantity at 1.
-
-It should accept a map as an argument. The map it accepts for argument is similar to the map you create in the previous task.
-
-For each entry of the map where the quantity is 1, update the quantity to 100. If updating the quantity is not possible (argument is not a map) the error `Cannot process` should be thrown.
-
-    bob@dylan:~$ cat 10-main.js
-    import updateUniqueItems from "./10-update_uniq_items.js";
-    import groceriesList from "./9-groceries_list.js";
-    
-    const map = groceriesList();
-    console.log(map);
-    
-    updateUniqueItems(map)
-    console.log(map);
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 10-main.js 
-    Map {
-      'Apples' => 10,
-      'Tomatoes' => 10,
-      'Pasta' => 1,
-      'Rice' => 1,
-      'Banana' => 5
-    }
-    Map {
-      'Apples' => 10,
-      'Tomatoes' => 10,
-      'Pasta' => 100,
-      'Rice' => 100,
-      'Banana' => 5
-    }
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [10-update_uniq_items.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/10-update_uniq_items.js)
-
-### 11\. Weak link data structure
-
-Export a `const` instance of `WeakMap` and name it `weakMap`.
-
-Export a new function named `queryAPI`. It should accept an endpoint argument like so:
-
-      {
-        protocol: 'http',
-        name: 'getUsers',
-      }
-    
-
-Track within the `weakMap` the number of times `queryAPI` is called for each endpoint.
-
-When the number of queries is >= 5 throw an error with the message `Endpoint load is high`.
-
-    bob@dylan:~$ cat 100-main.js
-    import { queryAPI, weakMap } from "./100-weak.js";
-    
-    const endpoint = { protocol: 'http', name: 'getUsers' };
-    weakMap.get(endpoint);
-    
-    queryAPI(endpoint);
-    console.log(weakMap.get(endpoint));
-    
-    queryAPI(endpoint);
-    console.log(weakMap.get(endpoint));
-    
-    queryAPI(endpoint);
-    queryAPI(endpoint);
-    queryAPI(endpoint);
-    queryAPI(endpoint);
-    
-    bob@dylan:~$ 
-    bob@dylan:~$ npm run dev 100-main.js 
-    1
-    2
-    .../100-weak.js:16
-        throw new Error('Endpoint load is high');
-       ...
-    bob@dylan:~$ 
-    
-
-**Repo:**
-
-*   GitHub repository: `holbertonschool-backend-javascript`
-*   Directory: `0x03-ES6_data_manipulation`
-*   File: [100-weak.js](https://github.com/Imanolasolo/holbertonschool-backend-javascript/blob/master/0x03-ES6_data_manipulation/100-weak.js)
-
-## Credits.
-
-## Author(s):blue_book:
-
-Work is owned and maintained by:
-* Imanol Asolo <[3848](mailto:3848@holbertonschool.com)> [![M](https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/25px-Octicons-mark-github.svg.png)](https://github.com/Imanolasolo) [![M](https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/25px-Twitter_Bird.svg.png)](https://twitter.com/jjusturi) [![M](https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/25px-LinkedIn_logo_initials.png)](https://www.linkedin.com/in/imanol-asolo-5ba9b42a/)
-
-
-## Acknowledgments :mega: 
-
-### **`Holberton School`** (*providing guidance*)
-This program was written as part of the curriculum for Holberton School.
-Holberton School is a campus-based full-stack software engineering program
-that prepares students for careers in the tech industry using project-based
-peer learning. For more information, visit [this link](https://www.holbertonschool.com/).
-<p align="center">
-	<img src="https://assets.website-files.com/6105315644a26f77912a1ada/610540e8b4cd6969794fe673_Holberton_School_logo-04-04.svg" alt="This is a secret;)">
-</p>
+## author
+[Ifeanyi kalu](https://github.com/fazzy12)
