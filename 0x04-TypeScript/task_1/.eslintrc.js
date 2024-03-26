@@ -1,3 +1,4 @@
+
 module.exports =  {
     parser:  '@typescript-eslint/parser',
     extends:  [
@@ -10,4 +11,3 @@ module.exports =  {
     rules:  {
     },
   };
-  
