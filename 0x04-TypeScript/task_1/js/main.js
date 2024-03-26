@@ -14,3 +14,6 @@ var director1 = {
     fullTimeEmployee: true,
     numberOfReports: 17,
 };
+var printTeacher = function (firstName, lastName) {
+    return "".concat(firstName.charAt(0), ". ").concat(lastName);
+};

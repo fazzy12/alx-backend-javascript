@@ -8,6 +8,10 @@ interface Teacher {
     [key: string]: any;
 }
 
+interface printTeacherFunction {
+    (firstName: string, lastName: string): string;
+}
+
 // Create a teacher object
 const teacher: Teacher = {
     firstName: 'John',
@@ -30,3 +34,7 @@ const director1: Directors = {
     fullTimeEmployee: true,
     numberOfReports: 17,
 };
+
+const printTeacher: printTeacherFunction  = (firstName, lastName) => {
+    return `${firstName.charAt(0)}. ${lastName}`;
+}
