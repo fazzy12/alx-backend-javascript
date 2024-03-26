@@ -6,3 +6,11 @@ var teacher = {
     location: 'London',
     contract: false,
 };
+// Create a director object
+var director1 = {
+    firstName: 'John',
+    lastName: 'Doe',
+    location: 'London',
+    fullTimeEmployee: true,
+    numberOfReports: 17,
+};
