@@ -1,69 +1,19 @@
-interface DirectorInterface {
-    workFromHome(): string;
-    getCoffeeBreak(): string;
-    workDirectorTasks(): string;
-}
+/// <reference path="./crud.d.ts" />
 
-interface TeacherInterface {
-    workFromHome(): string;
-    getCoffeeBreak(): string;
-    workTeacherTasks(): string;
-}
+import { RowID, RowElement } from './interface';
+import * as CRUD from './crud';
 
-class Director implements DirectorInterface {
-    workFromHome(): string {
-        return "Working from home";
-    }
+const row: RowElement = {
+  firstName: 'Guillaume',
+  lastName: 'Salva',
+};
 
-    getCoffeeBreak(): string {
-        return "Getting a coffee break";
-    }
+const newRowID: RowID = CRUD.insertRow(row);
+console.log(`Inserted row ID: ${newRowID}`);
 
-    workDirectorTasks(): string {
-        return "Getting to director tasks";
-    }
-}
+const updatedRow: RowElement = { ...row, age: 23 };
+CRUD.updateRow(newRowID, updatedRow);
+console.log(`Updated row ID: ${newRowID} with data:`, updatedRow);
 
-class Teacher implements TeacherInterface {
-    workFromHome(): string {
-        return "Cannot work from home";
-    }
-
-    getCoffeeBreak(): string {
-        return "Cannot have a break";
-    }
-
-    workTeacherTasks(): string {
-        return "Getting to work";
-    }
-}
-
-function createEmployee(salary: number | string): Teacher | Director {
-    if (typeof(salary) === 'number' && salary < 500) {
-        return new Teacher();
-    } else {
-        return new Director();
-    }
-}
-
-function isDirector(employee: Director | Teacher): employee is Director {
-    return (employee) instanceof Director;
-}
-
-function executeWork(employee: Director | Teacher): string {
-    if (employee instanceof Director) {
-        return employee.workDirectorTasks();
-    } else {
-        return employee.workTeacherTasks();
-    }
-}
-
-type Subjects = "Math" | "History";
-
-function teachClass(todayClass: Subjects): string {
-    if (todayClass === 'Math') {
-        return "Teaching Math";
-    } else {
-        return "Teaching History";
-    }
-}
+CRUD.deleteRow(newRowID);
+console.log(`Deleted row ID: ${newRowID}`);
