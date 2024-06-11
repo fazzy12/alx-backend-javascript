@@ -1,17 +1,27 @@
+// Define MajorCredits interface
 interface MajorCredits {
-    brand: 'Major';
     credits: number;
-}
+    _brand: "major";
+  }
 
-interface MinorCredits {
-    brand: 'Minor';
+  // Define MinorCredits interface
+  interface MinorCredits {
     credits: number;
-}
+    _brand: "minor";
+  }
 
-function sumMajorCredits(subject1: MajorCredits, subject2: MajorCredits): number {
-    return (subject1.credits + subject2.credits);
-}
+  // Function to sum MajorCredits
+  function sumMajorCredits(subject1: MajorCredits, subject2: MajorCredits): MajorCredits {
+    return {
+      credits: subject1.credits + subject2.credits,
+      _brand: "major",
+    };
+  }
 
-function sumMinorCredits(subject1: MinorCredits, subject2: MinorCredits): number {
-    return (subject1.credits + subject2.credits);
-}
+  // Function to sum MinorCredits
+  function sumMinorCredits(subject1: MinorCredits, subject2: MinorCredits): MinorCredits {
+    return {
+      credits: subject1.credits + subject2.credits,
+      _brand: "minor",
+    };
+  }
