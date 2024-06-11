@@ -1,4 +1,3 @@
-// task_4/js/subjects/Cpp.ts
 /// <reference path="Subject.ts" />
 
 namespace Subjects {
@@ -19,3 +18,5 @@ namespace Subjects {
         }
     }
 }
+
+export { Subjects };
