@@ -1,6 +1,7 @@
+// task_4/js/subjects/Teacher.ts
 namespace Subjects {
     export interface Teacher {
-        firstName: String;
-        lastName: String;
+        firstName: string;
+        lastName: string;
     }
 }
