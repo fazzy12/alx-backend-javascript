@@ -1,5 +1,7 @@
 const { expect } = require('chai');
 const { execSync } = require('child_process');
+const countStudents = require('../2-read_file'); // Adjust the path to the actual file
+
 
 
 describe('countStudents', function() {
